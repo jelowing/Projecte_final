@@ -1,0 +1,20 @@
+{
+  "name": "Graphic Web Components",
+  "description": "creació de web components amb Polymer, Highcharts i Firebase",
+  "main": "index.html",
+  "authors": [
+    "Jenifer López"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0"
+  }
+}
