@@ -1,0 +1,6 @@
+16:14:50.290871 == Info:   Trying 127.0.0.1...
+16:14:50.291316 == Info: Connected to 127.0.0.1 () port 8997 (#0)
+16:14:50.291324 == Info: set timeouts for state 0; Total 300, retry 6 maxtry 50
+16:14:50.291608 == Info: Connected for transmit
+16:14:50.291617 == Info: set timeouts for state 2; Total 3600, retry 72 maxtry 50
+16:14:50.291962 == Info: Closing connection 0

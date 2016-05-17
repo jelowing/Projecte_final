@@ -1,0 +1,5 @@
+16:14:51.291437 trying to get file: /test285.txt mode 2
+16:14:51.291490 requested test number 285 part 0
+16:14:51.291556 file opened and all is good
+16:14:53.977472 signalled to die
+16:14:53.977883 ========> IPv4 tftpd (port: 8997 pid: 556) exits with signal (2)

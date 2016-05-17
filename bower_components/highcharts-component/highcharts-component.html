@@ -1,5 +1,4 @@
 <link rel="import" href="../polymer/polymer.html">
-<script src="../jquery/dist/jquery.min.js"></script>
 <link rel="import" href="../firebase-element/firebase-collection.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 <dom-module id="highcharts-component">
@@ -7,108 +6,120 @@
         <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     </template>
     <script>
-        Polymer({
+    Polymer({
 
-            is: 'highcharts-component',
+        is: 'highcharts-component',
 
-            properties: {
-                type: {
-                    text: String
+        properties: {
+            type: {
+                text: String
+            },
+            title: {
+                text: String
+            },
+            subtitle: {
+                text: String
+            },
+            suffix: {
+                text: String
+            },
+            categories: {
+                text: String,
+                type: Array,
+                value: function() {
+                    return {};
+                }
+            },
+
+            titley: {
+                text: String
+            },
+
+            data: {
+                type: Object,
+                value: function() {
+                    return {};
+                },
+                notify: true
+            },
+            url: {
+                type: String,
+            },
+            datos: {
+                type: Object,
+                value: function() {
+                    return {};
+                },
+                notify: true,
+
+            }
+
+        },
+
+        handleResponse: function() {
+            console.log('handleResponse');
+        },
+
+
+        ready: function() {
+
+            var ref = new Firebase(this.url);
+            var options = {
+
+                chart: {
+                    renderTo: 'container',
+                    type: this.type
                 },
                 title: {
-                    text: String
+                    text: this.title,
+                    x: -20
                 },
                 subtitle: {
-                    text: String
+                    text: this.subtitle,
+                    x: -20
                 },
                 xAxis: {
-                    type: Array,
-                    value: function() {
-                        return {};
-                    }
+                    categories: this.categories
                 },
-
-                titley: {
-                    text: String
-                },
-
-                data: {
-                    type: Object,
-                    value: function() {
-                        return {};
-                    }
-                },
-                url: {
-                    type: String,
-                },
-                datos: {
-                    type: Object,
-                    value: function() {
-                        return {};
+                yAxis: {
+                    title: {
+                        text: this.titley
                     },
-                    notify: true,
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080',
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: this.suffix
+                },
+                credits: {
+                    enabled: false
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0,
 
-                }
+                },
+                series: null
+            }
 
-            },
+            ref.on("value", function(data) {
+                    this.data = data.val();
+                    options.series = this.data;
+
+                    var chart = new Highcharts.Chart(options);
 
 
-            ready: function() {
+                },
+                function(errorObject) {
+                    console.log("The read failed: " + errorObject.code);
+                });
+        },
 
-                var ref = new Firebase(this.url);
-                var options = {
-                            chart: {
-                                renderTo: 'container',
-                                type: this.type
-                            },
-                            title: {
-                                text: this.title,
-                                x: -20
-                            },
-                            subtitle: {
-                                text: this.subtitle,
-                                x: -20
-                            },
-                            xAxis: {
-                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-                                ]
-                            },
-                            yAxis: {
-                                title: {
-                                    text: this.titley
-                                },
-                                plotLines: [{
-                                    value: 0,
-                                    width: 1,
-                                    color: '#808080'
-                                }]
-                            },
-                            tooltip: {
-                                valueSuffix: this.value
-                            },
-                            legend: {
-                                layout: 'vertical',
-                                align: 'right',
-                                verticalAlign: 'middle',
-                                borderWidth: 0
-                            },
-                            series: null
-                        }
-
-                ref.on("value", function(data) {
-                        this.data = data.val();
-                        options.series = this.data;
-
-                        var chart = new Highcharts.Chart(options);
-
-                    },
-                    function(errorObject) {
-                        console.log("The read failed: " + errorObject.code);
-                    });
-            },
-
-        });
-
+    });
     </script>
 </dom-module>

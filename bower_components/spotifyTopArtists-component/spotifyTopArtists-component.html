@@ -1,0 +1,116 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../firebase-element/firebase-collection.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<script src="../jquery/dist/jquery.min.js"></script>
+<dom-module id="spotifyTopArtists-component">
+    <template>
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <iron-ajax 
+        auto 
+        url="https://api.twitter.com/1.1/trends/place.json" 
+        headers='{"Authorization": "OAuth oauth_consumer_key="Arr7YbSyFAKz7ihqkPQcqrF4B", oauth_nonce="4ead870c7ffdaa57e38e7613ee9066f5", oauth_signature="u7o0T3GeNcB8RKH09YSrd%2BaBsq0%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1462987524", oauth_token="249649477-cFiAfHIpjOItU5fez7SFtkr3R9oedfMeII7y6vRd", oauth_version='1.0', "Acces-Control-Allow-Origin:":"*", 
+        "Acces-Control-Allow-Methods":"GET,PUT,POST,DELETE","Acces-Control-Allow-Headers":"Content-Type"}'
+        params='{"id":"1"}'  
+        handle-as="json" 
+        on-response="handleResponse" 
+        last-response="{{response}}" debounce-duration="300">
+        </iron-ajax>
+        <p>{{response.items.0.name}}</p> 
+    </template>
+    <script>
+    Polymer({
+
+        is: 'spotifyTopArtists-component',
+
+        properties: {
+
+        },
+
+        handleResponse: function() {
+            console.log('handleResponse');
+        },
+
+
+        ready: function() {
+
+            var options = {
+
+                chart: {
+                    type: 'column',
+                    renderTo: 'container'
+                },
+                title: {
+                    text: 'Top 50 trending topics'
+                },
+                subtitle: {
+                    text: 'Click the columns to view versions. Source: <a href="http://netmarketshare.com">netmarketshare.com</a>.'
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total percent market share'
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}%'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                },
+
+                series: [{
+                    name: 'Brands',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Microsoft Internet Explorer',
+                        y: 56.33,
+                        drilldown: 'Microsoft Internet Explorer'
+                    }, {
+                        name: 'Chrome',
+                        y: 24.03,
+                        drilldown: 'Chrome'
+                    }, {
+                        name: 'Firefox',
+                        y: 10.38,
+                        drilldown: 'Firefox'
+                    }, {
+                        name: 'Safari',
+                        y: 4.77,
+                        drilldown: 'Safari'
+                    }, {
+                        name: 'Opera',
+                        y: 0.91,
+                        drilldown: 'Opera'
+                    }, {
+                        name: 'Proprietary or Undetectable',
+                        y: 0.2,
+                        drilldown: null
+                    }]
+                }],
+
+
+            }
+
+            $(document).ready(function() {
+
+                var chart = new Highcharts.Chart(options);
+            });
+
+        }
+    });
+    </script>
+</dom-module>

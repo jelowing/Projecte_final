@@ -1,0 +1,6 @@
+opcode: 2
+mode: octet
+tsize: 32
+blksize: 512
+timeout: 6
+filename: /test285.txt

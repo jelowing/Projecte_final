@@ -2,16 +2,17 @@
 <html>
 
 <head>
-    <title>Polymer</title>
+    <title>Polygraph | Personalize your graphic</title>
     <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
     <link rel="import" href="bower_components/polymer/polymer.html">
     <link rel="import" href="bower_components/highcharts-component/highcharts-component.html">
+    <link rel="import" href="bower_components/spotifyTopArtists-component/spotifyTopArtists-component.html">
 </head>
 
 <body>
-
-	<highcharts-component type="column" title="Titol" subtitle="Subtitol" titley="Titol Eix Y" value="sufix" url="https://polygraph.firebaseio.com/temperaturas"></highcharts-component>
-
+	
+	<!-- <highcharts-component type="line" title="Titol" subtitle="Subtitol" suffix=" C" titley="Titol Eix Y" categories="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']" url="https://polygraph.firebaseio.com/temperaturas"></highcharts-component> -->
+	<spotifyTopArtists-component></spotifyTopArtists-component>	
 
     <script src="bower_components/highcharts/highcharts.js"></script>
 </body>
