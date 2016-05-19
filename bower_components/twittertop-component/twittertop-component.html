@@ -1,0 +1,79 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../firebase-element/firebase-collection.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<script src="../jquery/dist/jquery.min.js"></script>
+<dom-module id="twittertop-component">
+    <template>
+        <div id="twitter" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
+        <iron-ajax auto url="http://localhost:8888/twittertop" headers='{"Content-Type": "application/json;charset=utf-8","Access-Control-Allow-Origin": "*","Access-Control-Allow-Headers": "Accept, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Content-Type"}' params='' handle-as="json" on-response="handleResponse" last-response="{{options.series.0.data}}" method="GET">
+        </iron-ajax>
+    </template>
+    <script>
+    Polymer({
+        is: "twittertop-component",
+        properties: {
+            options: {
+                type: Object,
+                value: {
+
+                    chart: {
+                        type: 'column',
+                        renderTo: 'twitter'
+                    },
+                    title: {
+                        text: 'Top Trending Topics'
+                    },
+                    subtitle: {
+                        text: 'Twitter API'
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Number of tweets'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y}K'
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}K</b><br/>'
+                    },
+
+                    series: [{
+                        name: 'Tweets',
+                        colorByPoint: true,
+                        data: null
+                    }],
+
+
+                }
+            }
+        },
+
+        handleResponse: function() {
+            console.log(this.options.series[0].data);
+            var chart = new Highcharts.Chart(this.options);
+
+        },
+
+       ready: function() {
+        console.log(this.options.series[0].data);
+       }
+
+    });
+    </script>
+</dom-module>
