@@ -2,10 +2,18 @@
 <link rel="import" href="../firebase-element/firebase-collection.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 <script src="../jquery/dist/jquery.min.js"></script>
+<script src="../highcharts/modules/exporting.js"></script>
+<script src="../highcharts/highcharts.js"></script>
 <dom-module id="spotifytop-component">
     <template>
         <div id="spotify" style="min-width: 310px; height: 500px; margin:100px"></div>
-        <iron-ajax auto url="http://localhost:8888/spotifytop" headers='{"Content-Type": "application/json;charset=utf-8","Access-Control-Allow-Origin": "*","Access-Control-Allow-Headers": "Accept, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Content-Type"}' params='' handle-as="json" on-response="handleResponse" last-response="{{options.series.0.data}}" method="GET">
+        <iron-ajax auto url="http://localhost:8888/spotifytop"
+        headers='{"Content-Type": "application/json;charset=utf-8","Access-Control-Allow-Origin": "*","Access-Control-Allow-Headers": "Accept, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Content-Type"}'
+        params=''
+        handle-as="json"
+        on-response="handleResponse"
+        last-response="{{options.series.0.data}}"
+        method="GET">
         </iron-ajax>
     </template>
     <script>
@@ -15,9 +23,8 @@
             options: {
                 type: Object,
                 value: {
-
                     chart: {
-                        type: 'column',
+                        type: 'bar',
                         renderTo: 'spotify'
                     },
                     title: {

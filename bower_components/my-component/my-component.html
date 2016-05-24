@@ -1,13 +1,16 @@
+<script src="../jquery/dist/jquery.min.js"></script>
+<script src="../highcharts/modules/exporting.js"></script>
+<script src="../highcharts/highcharts.js"></script>
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../firebase-element/firebase-collection.html">
 <script src="../firebase/firebase.js"></script>
-<dom-module id="highcharts-component">
+<dom-module id="my-component">
     <template>
         <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     </template>
     <script>
     Polymer({
-        is: 'highcharts-component',
+        is: 'my-component',
         properties: {
             type: {
                 text: String
@@ -53,13 +56,13 @@
             console.log('handleResponse');
         },
         ready: function() {
-            var ref = new Firebase("https://polygraph.firebaseio.com/value/-KIZefsdtB-qoCzAI42s");
+            var ref = new Firebase("https://polygraph.firebaseio.com/-KI_1i4Iv0FoYvviEzGp");
             var options = null;
 
             ref.on("value", function(data) {
                   var data = data.val();
-                  console.log(data);
-                    // options.series = this.data;
+                  console.log(JSON.stringify(data));
+                    options = data;
                     var chart = new Highcharts.Chart(options);
                 },
                 function(errorObject) {

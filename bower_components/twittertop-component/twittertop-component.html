@@ -2,6 +2,9 @@
 <link rel="import" href="../firebase-element/firebase-collection.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 <script src="../jquery/dist/jquery.min.js"></script>
+<script src="../highcharts/modules/exporting.js"></script>
+<script src="../highcharts/highcharts.js"></script>
+
 <dom-module id="twittertop-component">
     <template>
         <div id="twitter" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
@@ -43,14 +46,14 @@
                             borderWidth: 0,
                             dataLabels: {
                                 enabled: true,
-                                format: '{point.y}K'
+                                format: '{point.y} tweets'
                             }
                         }
                     },
 
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}K</b><br/>'
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} tweets</b><br/>'
                     },
 
                     series: [{
