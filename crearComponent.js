@@ -1,63 +1,92 @@
 var totalData = [];
 
-function init(){
-  var is = document.getElementById('is').value;
-  var type = document.getElementById('type').value;
-  var title = document.getElementById('title').value;
-  var subtitle = document.getElementById('subtitle').value;
-  var xAxis = document.getElementById('xAxis').value;
-  var yAxis = document.getElementById('yAxis').value;
-  var series = document.getElementById('series').value;
+document.getElementById("button").onclick = function() {
 
-  totalData.push({
-    is: is,
-    type: type,
-    title: title,
-    subtitle: subtitle,
-    series: series,
-    yAxis: yAxis
-  });
 
-console.log(JSON.stringify(totalData));
-  var ref = new Firebase("https://polygraph.firebaseio.com/");
-  var newPostRef = ref.push();
-  newPostRef.set({
-    chart: {
-        renderTo: "container",
-        type: totalData[0].type
-    },
-    title: {
-        text: totalData[0].title,
-        x: -20
-    },
-    subtitle: {
-        text: totalData[0].subtitle,
-        x: -20
-    },
-    xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    },
-    yAxis: {
+    var is = document.getElementById('is').value;
+    var type = document.getElementById('type').value;
+    var title = document.getElementById('title').value;
+    var subtitle = document.getElementById('subtitle').value;
+    var xAxis = document.getElementById('xAxis').value;
+    var yAxis = document.getElementById('yAxis').value;
+    var series = document.getElementById('series').value;
+
+    totalData.push({
+        is: is,
+        type: type,
+        title: title,
+        subtitle: subtitle,
+        series: series,
+        yAxis: yAxis,
+        xAxis: xAxis
+    });
+
+
+    var series_split = totalData[0].series.split(",");
+    var axis_split = totalData[0].xAxis.split(",")
+
+
+
+    if (series_split.length != axis_split.length) {
+        alert("series i xAxis han de tenir la mateixa longitud");
+        totalData = [];
+    } else {
+        series_split.forEach(function(element, index, array) {
+            if (isNaN(element)) {
+                alert("Error a series : No tots són núḿeros");
+                totalData = [];
+            }
+        });
+
+    }
+
+    console.log(JSON.stringify(totalData));
+    var ref = new Firebase("https://polygraph.firebaseio.com/");
+    var newPostRef = ref.push();
+    newPostRef.set({
+        chart: {
+            renderTo: "container",
+            type: totalData[0].type
+        },
         title: {
-            text: totalData[0].yAxis
-      }
-    },
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        borderWidth: 0,
+            text: totalData[0].title,
+            x: -20
+        },
+        subtitle: {
+            text: totalData[0].subtitle,
+            x: -20
+        },
+        xAxis: {
+            categories: totalData[0].xAxis.split(",")
+        },
+        yAxis: {
+            title: {
+                text: totalData[0].yAxis
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0,
 
-    },
-    series:[{
+        },
+        series: [{
             name: totalData[0].is,
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            data: totalData[0].series.split(",").map(Number)
         }]
-  });
+    });
 
-  var postID = newPostRef.key();
-  console.log("ID = "+postID);
+    var postID = newPostRef.key();
+    console.log("ID = " + postID);
+    console.log(totalData[0].xAxis.split(","));
 
 
-}
+    window.setTimeout(function() {
+
+        window.location.href = "http://localhost/Projecte_final/rest.html";
+
+    }, 5000);
+
+
+};

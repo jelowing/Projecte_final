@@ -19,6 +19,7 @@
     "highcharts": "^4.2.4",
     "jquery-ui": "^1.11.4",
     "firebase-element": "GoogleWebComponents/firebase-element#^1.0.12",
-    "iron-ajax": "PolymerElements/iron-ajax#^1.2.0"
+    "iron-ajax": "PolymerElements/iron-ajax#^1.2.0",
+    "bootstrap": "^3.3.6"
   }
 }
