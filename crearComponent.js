@@ -30,7 +30,7 @@ document.getElementById("button").onclick = function() {
     if (series_split.length != axis_split.length) {
         alert("series i xAxis han de tenir la mateixa longitud");
         totalData = [];
-    } else {
+    }else {
         series_split.forEach(function(element, index, array) {
             if (isNaN(element)) {
                 alert("Error a series : No tots són núḿeros");
@@ -84,9 +84,9 @@ document.getElementById("button").onclick = function() {
 
     window.setTimeout(function() {
 
-        window.location.href = "http://localhost/Projecte_final/rest.html";
+        window.location.href = "http://localhost/Projecte_final/personalize.html";
 
-    }, 5000);
+    }, 4000);
 
 
 };

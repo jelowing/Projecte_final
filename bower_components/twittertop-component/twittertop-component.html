@@ -46,7 +46,7 @@
                             borderWidth: 0,
                             dataLabels: {
                                 enabled: true,
-                                format: '{point.y} tweets'
+                                format: '{point.y}'
                             }
                         }
                     },
@@ -70,10 +70,8 @@
         handleResponse: function() {;
             var chart = new Highcharts.Chart(this.options);
 
-        },
+        }
 
-       ready: function() {
-       }
 
     });
     </script>

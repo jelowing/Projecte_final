@@ -7,17 +7,52 @@
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css" charset="utf-8">
 </head>
 
-<body>
-    <input type="text" id="is" name="is" value="" placeholder="is">
-    <input type="text" id="type" name="type" value="" placeholder="type">
-    <input type="text" id="title" name="title" value="" placeholder="title">
-    <input type="text" id="subtitle" name="subtitle" value="" placeholder="subtitle">
-    <input type="text" id="xAxis" name="xAxis" value="" placeholder="xAxis">
-    <input type="text" id="yAxis" name="yAxis" value="" placeholder="yAxis">
-    <input type="text" id="series" name="series" value="" placeholder="series">
-    <button id="button">Crear</button>
+<body class="body2">
+    <div class="container">
+        <!--tipus-->
+        <div class="form-group">
+            <label>Tipus</label>
+            <select id="type" class="form-control">
+                <option value="line">line</option>
+                <option value="bar">bar</option>
+                <option value="column">column</option>
+                <option value="pie">pie</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Titol</label>
+            <input type="text" class="form-control" id="title" name="title" value="" placeholder="title">
+        </div>
+        <div class="form-group">
+            <label>Subtitol</label>
+            <input type="text" class="form-control" id="subtitle" name="subtitle" value="" placeholder="subtitle">
+        </div>
+        <div class="form-group">
+            <label>Eix X</label>
+            <input type="text" class="form-control" id="xAxis" name="xAxis" value="" placeholder="xAxis: ex Gen,Feb,Mar ...">
+        </div>
+        <div class="form-group">
+            <label>Eix Y</label>
+            <input type="text" class="form-control" id="yAxis" name="yAxis" value="" placeholder="yAxis">
+        </div>
+        <div class="form-group">
+            <label>Nom</label>
+            <input type="text" class="form-control" id="is" name="is" value="" placeholder="is">
+        </div>
+        <div class="form-group">
+            <label>Dades</label>
+            <input type="text" class="form-control" id="series" name="series" value="" placeholder="series: ex 10,20,30">
+        </div>
+
+        <div class="button">
+            <a class="btn btn-lg show" id="button">Crear</a>
+        </div>
+
+    </div>
+
 
     <script src="crearComponent.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
